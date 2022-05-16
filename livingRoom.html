@@ -1,0 +1,81 @@
+<html>
+<head>
+
+	<title>Object Detection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.0.0/p5.js"></script>
+
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body background="background.jpg">
+  <center>
+    <h1 class="btn btn-info heading" >Object Detection</h1>
+    <h3 class="btn btn-success" id="status"></h3>
+  </center>
+
+  <script>cute = ""
+    status = ""
+    
+    function preload(){
+    cute = loadImage(".jpg");
+    
+    
+    
+    }
+    
+    
+    
+    function setup(){
+    canvas = createCanvas(640,420);
+    canvas.center();
+    objectdetector = ml5.objectDetector("cocossd", modelLoaded);
+    
+    }
+    
+    function modelLoaded(){
+    console.log("Model Loaded!!:D");
+    status = true
+    objectdetector.detect(cute,gotResult)
+    
+    }
+    
+    function gotResult(error,results){
+    if (error) {
+    console.log("GO TO THE CODE AND FIX THE DAMN ERROR!!!!!")
+    } else {
+    console.log(results)
+    }
+    
+    
+    
+    }
+    
+    
+    function draw(){
+    image(cute,0,0,640,420);
+    fill("red");
+    text("Brown Dog",45,50);
+    stroke("red");
+    noFill();
+    rect(45,75,255,300);
+    
+    fill("red");
+    text("Cat",330,50);
+    stroke("red");
+    noFill();
+    rect(310,75,255,300);
+    }</script>
+
+
+
+
+</body>
+</html>
+
